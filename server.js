@@ -3,7 +3,10 @@ const hbs=require('hbs');
 var app=express();
 const fs=require('fs');
 
+const port=process.env.PORT || 3000;
+
 app.set('view engine','hbs');
+
 app.use(express.static(__dirname+'/public'));
 
 hbs.registerPartials(__dirname+'/views/partials');
@@ -27,21 +30,21 @@ fs.appendFile('server.log',log +'\n',(err)=>{
   console.log(log)
   next();
 });
-
-app.use((req,res,next)=>{
-  res.render('magnance.hbs',{
-    pageTitle:'magnance',
-
-  });
-});
-
-
 app.get('/',(req,res)=>{
   res.render('home.hbs',{
     pageTitle:'Home page',
     currentYear:new Date().getFullYear()
   });
 });
+app.use((req,res,next)=>{
+  res.render('magnance.hbs',{
+    pageTitle:'magnance',
+  });
+    next();
+});
+
+
+
 
 
 // app.get('/',
@@ -72,4 +75,4 @@ app.get('/bad',
   res.send({
     ErrorMessage:"Bad request Made"});
 });
-app.listen(3000,()=>{console.log('Server Is ready to listen to port number 3000');});
+app.listen(port,()=>{console.log(`Server Is ready to listen to port number ${port}`);});
