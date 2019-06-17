@@ -36,12 +36,12 @@ app.get('/',(req,res)=>{
     currentYear:new Date().getFullYear()
   });
 });
-app.use((req,res,next)=>{
-  res.render('magnance.hbs',{
-    pageTitle:'magnance',
-  });
-    next();
-});
+// app.use((req,res,next)=>{
+//   res.render('magnance.hbs',{
+//     pageTitle:'magnance',
+//   });
+//     next();
+// });
 
 app.get('/projects',(req,res)=>{
   res.render('projects.hbs',{
