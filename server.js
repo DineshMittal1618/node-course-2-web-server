@@ -43,6 +43,11 @@ app.use((req,res,next)=>{
     next();
 });
 
+app.get('/projects',(req,res)=>{
+  res.render('projects.hbs',{
+    pageTitle:'projects page'
+  });
+});
 
 
 
